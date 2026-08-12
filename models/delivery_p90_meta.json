@@ -1,7 +1,6 @@
 {
   "model_files": {
-    "native": "models/delivery_p90.txt",
-    "pickle": "models/delivery_p90_lgbm.pkl"
+    "native": "models/delivery_p90.txt"
   },
   "target": "delivered_in_days",
   "features": [
@@ -91,31 +90,32 @@
   "params": {
     "boosting_type": "gbdt",
     "class_weight": null,
-    "colsample_bytree": 1.0,
+    "colsample_bytree": 0.63,
     "importance_type": "gain",
-    "learning_rate": 0.1,
+    "learning_rate": 0.023,
     "max_depth": -1,
-    "min_child_samples": 70,
+    "min_child_samples": 61,
     "min_child_weight": 0.001,
     "min_split_gain": 0.0,
-    "n_estimators": 500,
+    "n_estimators": 200,
     "n_jobs": null,
-    "num_leaves": 40,
+    "num_leaves": 19,
     "objective": "quantile",
     "random_state": null,
     "reg_alpha": 0.0,
-    "reg_lambda": 0.0,
-    "subsample": 1.0,
+    "reg_lambda": 0.22,
+    "subsample": 0.63,
     "subsample_for_bin": 200000,
-    "subsample_freq": 0,
-    "alpha": 0.91
+    "subsample_freq": 1,
+    "alpha": 0.91,
+    "verbose": -1
   },
   "train_cutoff": "2018-05-27 14:58:45",
   "n_train": 76252,
   "n_test": 19064,
   "test_metrics": {
-    "late_rate_pct": 4.39,
-    "mean_promise_days": 17.09,
+    "late_rate_pct": 3.13,
+    "mean_promise_days": 18.4,
     "olist_late_rate_pct": 4.5,
     "olist_mean_promise_days": 20.94
   },
