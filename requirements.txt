@@ -1,6 +1,8 @@
 pandas
 numpy
-scipy
-seaborn
-missingno
 matplotlib
+seaborn
+scikit-learn
+lightgbm
+optuna
+kagglehub
