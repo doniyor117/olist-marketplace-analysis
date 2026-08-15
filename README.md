@@ -5,7 +5,7 @@ One line on what the repo is and what dataset it uses.
 ---
 
 ## 01 — Delivery Promise Optimization
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-store-analysis/blob/main/01-delivery-estimates/analysis.ipynb) · [Notebook](01-delivery-estimates/analysis.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-store-analysis/blob/main/01-delivery-estimates/analysis.ipynb) · [![Notebook](https://community-scripts.org/_next/image?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fselfhst%2Ficons%40main%2Fwebp%2Fjupyter.webp&w=64&q=75)](01-delivery-estimates/analysis.ipynb)
 
 **Olist promises 23 days and delivers in 10.** [2-3 sentences: what you found, what you recommend, the numbers.]
 
@@ -28,9 +28,9 @@ One line on what the repo is and what dataset it uses.
 
 ## Data & Tools
 
-**Data:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) — ~100k orders placed between 2016 and 2018, across nine relational tables. Downloaded at runtime, not committed to the repo.
+  **Data:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) - ~100k orders placed between 2016 and 2018, across nine relational tables. Downloaded at runtime, not committed to the repo.
 
-**Tools:** Python, pandas, NumPy, matplotlib, seaborn, LightGBM, Optuna, scikit-learn.
+  **Tools:** Python, pandas, NumPy, matplotlib, seaborn, LightGBM, Optuna, scikit-learn.
 
 ## Repo structure
 ├── 01-delivery-estimates/
