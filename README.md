@@ -34,6 +34,7 @@ One line on what the repo is and what dataset it uses.
 
 ## Repo structure
 
+<pre>
 ├── 01-delivery-estimates/
 │   ├── figures/           charts exported from the analysis
 │   └── analysis.ipynb     the deliverable: question, findings, model, recommendation
@@ -45,6 +46,7 @@ One line on what the repo is and what dataset it uses.
 ├── .gitignore
 ├── README.md
 └── requirements.txt
+</pre>
 
 ## How to run
 Colab badge, or clone + requirements.
