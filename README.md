@@ -1,4 +1,6 @@
-# **Olist Marketplace Analysis**
+<img src="https://api.platform.softwareone.com/public/v1/public-catalog/vendor-profiles/VND-5970-8835/icon" width="225" />
+
+# **Marketplace Analysis**
 
 [One line on what the repo is and what dataset it uses.]
 
@@ -72,7 +74,7 @@ Use the model with p90 settings as it improves both measures at the same time, o
 ## Roadmap
 > finished:
 
-- Delivery promise optimization - Aug 2026
+- Delivery estimates optimization - Aug 2026
 
 > next:
 
