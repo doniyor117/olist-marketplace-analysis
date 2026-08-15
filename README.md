@@ -5,7 +5,7 @@ One line on what the repo is and what dataset it uses.
 ---
 
 ## 01 — Delivery Promise Optimization
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-store-analysis/blob/main/01-delivery-estimates/analysis.ipynb) · [Notebook](01-delivery-estimates/analysis.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-store-analysis/blob/main/01-delivery-estimates/analysis.ipynb)
 
 **Olist promises 23 days and delivers in 10.** [2-3 sentences: what you found, what you recommend, the numbers.]
 
