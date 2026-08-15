@@ -33,6 +33,7 @@ One line on what the repo is and what dataset it uses.
   **Tools:** Python, pandas, NumPy, matplotlib, seaborn, LightGBM, Optuna, scikit-learn.
 
 ## Repo structure
+
 ├── 01-delivery-estimates/
 │   ├── figures/           charts exported from the analysis
 │   └── analysis.ipynb     the deliverable: question, findings, model, recommendation
