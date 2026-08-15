@@ -1,56 +1,67 @@
-# Olist Marketplace Analytics
+# **Olist Marketplace Analysis**
 
 [One line on what the repo is and what dataset it uses.]
 
----
-
-## 01 — Delivery Promise Optimization
+## **01 - Delivery Promise Optimization**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-store-analysis/blob/main/01-delivery-estimates/analysis.ipynb)
+[![Notebook](https://img.shields.io/badge/notebook-view%20on%20GitHub-181717?logo=jupyter)](01-delivery-estimates/analysis.ipynb)
 
-**Olist promises 23 days and delivers in 10.** [2-3 sentences: what you found, what you recommend, the numbers.]
+*Olist shows customers a delivery date at checkout that is typically 23 days, while orders arrive in around 10.*
 
-### Analysis Overview
+This analysis asks:
 
-* **Questions:** [your three]
-* **Findings:** [your four bullets]
-* **Recommendation:** [one paragraph]
-* **Limitations:** [your list]
+- **Does the gap between estimated and delivered dates vary a lot based on distance or season?**
+- **What does a broken promise cost in review score, and what does extra padding days bring?**
+- **What should the promised date actually be, and what does Olist gain and give up by keeping the current one?**
 
-### Figures
+## Analysis Overview:
 
-![Figure 1 description](01-delivery-estimates/figures/figure1.png)
-![Figure 2 description](01-delivery-estimates/figures/figure2.png)
+discussion
+
+![observed_vs_estimated](01-delivery-estimates/figures/observed_vs_estimated_delivery_time_histplot.png)
+
+comment
+
+![score_delivery_perform](01-delivery-estimates/figures/review_scores_by_delivery_performance.png)
+
+comment
+
+![promise_reliability](01-delivery-estimates/figures/promise_vs_reliability.png)
+
+discussion
+
+...
+
+## Main Findings:
+
+- Delivery got faster over 2018 while promises didn't follow: the late rate falls to 4.5% in the June-October test window, so the padding was calibrated for how slow Olist used to be.
+- Late delivery is very costly - 2/3 of the very late orders (+5 days) were rated with 1 review score, while having more padding plateaued the scores after 7-16 days interval.
+- LightGBM quantile regression model with settings alpha=0.9 achieves typical promises of ~18 days at 3.4% late rate vs Olist's 21 days at 4.5% on the test dataset.
+- The most important features were destination state, distance and purchase month.
+
+## **Recommendation:**
+
+Use the model with p90 settings as it improves both measures at the same time, or we can prioritize less lateness or shorter paddings.
 
 ---
 
 ## Project Details
 
-### Data & Tools
-* **Data:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) — ~100k orders placed between 2016 and 2018. Downloaded at runtime, not committed to the repo.
-* **Tools:** Python, pandas, NumPy, matplotlib, seaborn, LightGBM, Optuna, scikit-learn
+> * **Data:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+> * **Tools:** *Python* - pandas, numpy, matplotlib, seaborn, LightGBM, optuna, scikit-learn
 
-### How to Run
-1. **Colab:** Click the badge in the project section above.
-2. **Local:** Clone this repository and install dependencies:
-   ```bash
-   git clone [https://github.com/doniyor117/olist-store-analysis.git](https://github.com/doniyor117/olist-store-analysis.git)
-   pip install -r requirements.txt
-   ```
-
----
 
 ## Repo Structure
 
 ```text
 ├── 01-delivery-estimates/
 │   ├── figures/                # charts exported from the analysis
-│   └── analysis.ipynb          # the deliverable: question, findings, model, recommendation
-├── lab/
+│   ├── models/
+│   │   ├── delivery_p90.txt        # trained LightGBM quantile model
+│   │   └── delivery_p90_meta.json  # essential configs for the model
+│   ├── analysis.ipynb          # the deliverable: findings, model, recommendation
 │   └── lab.ipynb               # exploratory work, dead ends included
-├── models/
-│   ├── delivery_p90.txt        # trained LightGBM quantile model
-│   └── delivery_p90_meta.json  # features, category levels and params needed to use it
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -59,5 +70,11 @@
 ---
 
 ## Roadmap
-- [ ] 02 — Seller quality
-- [ ] 03 — Freight economics
+> finished:
+
+- Delivery promise optimization - Aug 2026
+
+> next:
+
+- Seller quality
+- Freight economics

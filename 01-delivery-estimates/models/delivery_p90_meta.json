@@ -1,7 +1,5 @@
 {
-  "model_files": {
-    "native": "models/delivery_p90.txt"
-  },
+  "model_file": "delivery_p90.txt",
   "target": "delivered_in_days",
   "features": [
     "customer_state",
@@ -107,17 +105,8 @@
     "subsample": 0.63,
     "subsample_for_bin": 200000,
     "subsample_freq": 1,
-    "alpha": 0.91,
+    "alpha": 0.9,
     "verbose": -1
   },
-  "train_cutoff": "2018-05-27 14:58:45",
-  "n_train": 76252,
-  "n_test": 19064,
-  "test_metrics": {
-    "late_rate_pct": 3.13,
-    "mean_promise_days": 18.4,
-    "olist_late_rate_pct": 4.5,
-    "olist_mean_promise_days": 20.94
-  },
-  "notes": "Predicts the 0.91 quantile of delivery days from purchase. Output is the promise date offset, not expected delivery time. Apply np.ceil to predictions. Rebuild categoricals using category_levels before predicting, or codes will not align."
+  "train_cutoff": "2018-05-27 14:58:45"
 }
