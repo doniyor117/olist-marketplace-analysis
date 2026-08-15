@@ -1,4 +1,4 @@
-<img src="https://api.platform.softwareone.com/public/v1/public-catalog/vendor-profiles/VND-5970-8835/icon" width="225" />
+<img src="assets/olist-logo.svg" width="225" />
 
 # **Marketplace Analysis**
 
