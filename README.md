@@ -54,7 +54,7 @@ To know about customer satisfaction and behaviour for the delivery arrival, I ex
 
 > It's obvious from here that late deliveries lower the scores dramatically. Even 2/3 of the very late orders have received the review score 1. Another interesting finding is that early deliveries scored even higher than on time deliveries, and the scores flatten after the early bin no matter how big it is. The score figures were almost the same even when they were checked with distance buckets. This means extending the estimated date doesn't buy extra scores after that point, but lateness hurts a lot.
 
-Since being late costs much more than being early, the promise shouldn't be a best guess at the delivery time. Predicting the average would mean arriving late on half the orders. Say a route's delivery times are 5, 8, 9, 12, 22 days. The average is about 11. Promise 11 days and the 12 and the 22 both miss. Two out of five orders are late.
+Since being late costs much more than being early, the promise shouldn't be a best guess of the delivery time. Predicting the average would mean arriving late on half the orders. Say a route's delivery times are 5, 8, 9, 12, 22 days. The average is about 11. Promise 11 days and the 12 and the 22 both miss. Two out of five orders are late.
 
 So instead I trained a LightGBM model to predict a high percentile of delivery time, so the promised date is one the order beats most of the time. The percentile chosen sets the late rate directly.
 
