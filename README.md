@@ -2,19 +2,29 @@
 
 # **Marketplace Analysis**
 
-[One line on what the repo is and what dataset it uses.]
+Olist is a Brazilian e-commerce platform that operates as a marketplace aggregator, allowing small businesses to sell their products directly through the 'Olist Store' on major e-commerce channels. This project provides a marketplace analysis on delivery estimates and seller quality
+
+## Scope
+
+While this dataset could explore several other questions, I narrowed my focus on two criteria: can these nine tables actually answer the question and would the answer help someone at Olist to make a better decision?
+
+The candidates were repeat purchase, category performance, seller quality and freight economics. Repeat purchase failed the first one as only ~3% of customers made >1 orders, while category performance failed the second as Olist acts as marketplace where it doesn't choose it's catalog. "Furniture sells well" is actionable for a store that picks its own stock, but for Olist it isn't the same.
+
+While freight pricing could support some analysis, the dataset has no cost data, so we can't tell if Olist makes or loses money on shipping. Seller quality and delivery estimates optimization pass both.
+
+
 
 ## **01 - Delivery Promise Optimization**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-marketplace-analysis/blob/main/01-delivery-estimates/analysis.ipynb)
 [![Notebook](https://img.shields.io/badge/notebook-view%20on%20GitHub-181717?logo=jupyter)](01-delivery-estimates/analysis.ipynb)
 
-*Olist shows customers a delivery date at checkout that is typically 23 days, while orders arrive in around 10.*
+Estimated delivery date is one of the features Olist controls directly. Sellers ship the product and Olist sets the promise at checkout. *It shows customers a delivery date that is typically 23 days, while orders arrive in around 10.* A large buffer protects against breaking the promise, but it also makes the offer look slower than it is, which may hurt Olist against competitors showing tighter dates. That trade-off is what this analysis explores.
 
 This analysis asks:
 
-- **Does the gap between estimated and delivered dates vary a lot based on distance or season?**
-- **What does a broken promise cost in review score, and what does extra padding days bring?**
+- **Does the gap between estimated and actual delivered dates vary a lot based on factors like distance or season?**
+- **What does a broken promise cost in review score, and what does extra padding bring?**
 - **What should the promised date actually be, and what does Olist gain and give up by keeping the current one?**
 
 ## Analysis Overview:
@@ -79,4 +89,3 @@ Use the model with p90 settings as it improves both measures at the same time, o
 > next:
 
 - Seller quality
-- Freight economics
