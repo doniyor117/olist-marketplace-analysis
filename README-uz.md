@@ -4,6 +4,17 @@
 
 Olist — bu marketplace agregatori sifatida ishlaydigan Braziliya elektron tijorat platformasi bo'lib, kichik bizneslarga o'z mahsulotlarini yirik elektron tijorat kanallarida 'Olist Store' orqali bevosita sotish imkonini beradi. Ushbu loyiha yetkazib berish muddati baholari va sotuvchilar sifati bo'yicha marketplace tahlilini taqdim etadi.
 
+## Kontentlar Jadvali
+
+- [Qamrov](#qamrov)
+- [01 - Yetkazib berish muddati va'dasini optimallashtirish](#01---yetkazib-berish-muddati-vadasini-optimallashtirish)
+  - [Tahlil sharhi](#tahlil-sharhi)
+  - [Asosiy topilmalar](#asosiy-topilmalar)
+  - [Tavsiya](#tavsiya)
+- [Loyiha tafsilotlari](#loyiha-tafsilotlari)
+- [Repozitoriy tuzilmasi](#repozitoriy-tuzilmasi)
+- [Yo'l xaritasi](#yol-xaritasi)
+
 ## Qamrov
 
 Bu ma'lumotlar to'plami yordamida yana bir necha savolni o'rganish mumkin bo'lsa-da, men e'tiborimni ikkita mezon asosida toraytirdim: shu to'qqizta jadval savolga haqiqatan ham javob bera oladimi va javob Olistdagi kimgadir yaxshiroq qaror qabul qilishga yordam beradimi?

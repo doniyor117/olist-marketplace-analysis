@@ -4,6 +4,17 @@
 
 Olist is a Brazilian e-commerce platform that operates as a marketplace aggregator, allowing small businesses to sell their products directly through the 'Olist Store' on major e-commerce channels. This project provides a marketplace analysis on delivery estimates and seller quality
 
+## Table of Contents
+
+- [Scope](#scope)
+- [01 - Delivery Promise Optimization](#01---delivery-promise-optimization)
+  - [Analysis Overview](#analysis-overview)
+  - [Main Findings](#main-findings)
+  - [Recommendation](#recommendation)
+- [Project Details](#project-details)
+- [Repo Structure](#repo-structure)
+- [Roadmap](#roadmap)
+
 ## Scope
 
 While this dataset could explore several other questions, I narrowed my focus on two criteria: can these nine tables actually answer the question and would the answer help someone at Olist to make a better decision?
