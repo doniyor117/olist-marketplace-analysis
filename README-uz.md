@@ -40,7 +40,7 @@ Bu tahlil quyidagi savollarni beradi:
 
 Men farqni bevosita o'lchashdan boshladim. 2016–2018 yillar orasida yetkazib berilgan ~96 ming buyurtmaning barchasi uchun va'da qilingan sana va haqiqiy yetkazib berish sanasini oldim, ularning o'rtacha va median qiymatlarini hisobladim hamda zaxira vaqtini (yetkazib berilgan va taxminiy sanalar orasidagi kunlar) ko'rish uchun ularni ayirdim.
 
-![observed_vs_estimated](01-delivery-estimates/figures/observed_vs_estimated_delivery_time_histplot.png)
+![observed_vs_estimated](01-delivery-estimates/figures/03_delivery_time_vs_promise.png)
 
 > Chap tomondagi rasm buyurtmalarni yetkazib berish necha kun davom etganining taqsimotini ko'rsatadi va biz o'ngga qiyshaygan (right-skewed) ma'lumotni ko'rishimiz mumkin, shuning uchun asosiy o'lchovlarim uchun median dan foydalandim, chunki o'rtacha qiymatga chetdagi qiymatlar va uzun dum ta'sir qiladi. O'ng tomondagi rasm — zaxira vaqtlarining taqsimoti. Ko'pchilik buyurtmalarda yetkazib berish taxminan 10 kun davom etadi, va'da esa undan 12 kun narida turadi. E'tiborni tortadigan jihati shundaki, shunchalik katta zaxiraga qaramay, buyurtmalarning 7,6% i baribir kechikib yetib keladi.
 
@@ -57,7 +57,7 @@ Yetkazib berish vaqti bo'yicha mijozlar qoniqishi va xatti-harakatini bilish uch
 | **very early** | 16 dan 26 gacha |
 | **extremely early** | 26 dan yuqori |
 
-![score_delivery_perform](01-delivery-estimates/figures/review_scores_by_delivery_performance.png)
+![score_delivery_perform](01-delivery-estimates/figures/05_review_score_by_buffer.png)
 
 > Bu yerdan ko'rinib turibdiki, kechikkan yetkazib berishlar baholarni keskin tushiradi. Hatto juda kech yetkazilgan buyurtmalarning 2/3 qismi 1 ball sharh bahosini olgan. Yana bir qiziq topilma shuki, erta yetkazib berishlar o'z vaqtida yetkazib berishlardan ham yuqoriroq baho olgan va baholar early oralig'idan keyin qanchalik katta bo'lishidan qat'i nazar tekislanib qoladi. Baho ko'rsatkichlari masofa oraliqlari bo'yicha tekshirilganda ham deyarli o'zgarmadi. Bu shuni anglatadiki, taxminiy sanani uzaytirish ma'lum bir nuqtadan keyin qo'shimcha baho keltirmaydi, kechikish esa juda qattiq zarar yetkazadi.
 
@@ -75,7 +75,7 @@ Shuningdek, oddiy state-pair hisob-kitobi ham xuddi shu ishni bajara oladimi yo'
 
 Bu yerda har bir usul uchun taqqoslash jadvali keltirilgan. Test ma'lumotlarida Olist o'rtacha ~21 kunni 4,5% kechikish darajasida bashorat qilgan, bizning modelimiz esa ~18 kunni 3,44% da bergan — ikkala ko'rsatkich bo'yicha ham sezilarli darajada past. Baseline usuli kechikish darajasini ikki barobar kamaytirdi, lekin ayni paytda yetkazib berish muddatlarini Olistning taxminlaridan ham ko'proq oshirib yubordi.
 
-![promise_reliability](01-delivery-estimates/figures/promise_vs_reliability.png)
+![promise_reliability](01-delivery-estimates/figures/08_promise_vs_late_rate.png)
 
 > Turli alpha darajalari bir yutuqni boshqasiga almashtiradi. p70 da biz boshqalar orasida eng qisqa yetkazib berish muddatlarini olamiz (o'rtacha 11 kun), lekin kechikish darajasini juda ko'p oshiramiz, 10% dan ortiq. p95 da esa buning teskarisi sodir bo'ladi.
 
@@ -105,8 +105,7 @@ Men modelni p90 sozlamalari bilan ishlatishni tavsiya qilaman, chunki u ikkala k
 │   ├── models/
 │   │   ├── delivery_p90.txt        # o'rgatilgan LightGBM kvantil modeli
 │   │   └── delivery_p90_meta.json  # model uchun zarur konfiguratsiyalar
-│   ├── analysis.ipynb          # yakuniy ish: topilmalar, model, tavsiya
-│   └── lab.ipynb               # izlanish ishlari, muvaffaqiyatsiz urinishlar bilan
+│   └── analysis.ipynb          # yakuniy ish: topilmalar, model, tavsiya
 ├── .gitignore
 ├── README.md
 └── requirements.txt

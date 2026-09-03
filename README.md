@@ -42,7 +42,7 @@ This analysis asks:
 
 I started by measuring the gap directly. For all ~96k orders delivered between 2016 and 2018, I took the promised date and the actual delivery date, calculated their mean and median, and subtracted them to see the padding (days between delivered and estimated dates).
 
-![observed_vs_estimated](01-delivery-estimates/figures/observed_vs_estimated_delivery_time_histplot.png)
+![observed_vs_estimated](01-delivery-estimates/figures/03_delivery_time_vs_promise.png)
 
 > The left figure shows the distribution of days it took for order deliveries, and we can see right-skewed data, so I used median for my main measures as mean is affected by outliers and the long tail. The right figure is the distribution of paddings. For most orders the delivery takes around 10 days, while the promise sits 12 days beyond that. What stands out is that even with a buffer that large, 7.6% of orders still arrive late.
 
@@ -61,7 +61,7 @@ To know about customer satisfaction and behaviour for the delivery arrival, I ex
 | **extremely early** | above 26 |
 
 
-![score_delivery_perform](01-delivery-estimates/figures/review_scores_by_delivery_performance.png)
+![score_delivery_perform](01-delivery-estimates/figures/05_review_score_by_buffer.png)
 
 > It's obvious from here that late deliveries lower the scores dramatically. Even 2/3 of the very late orders have received the review score 1. Another interesting finding is that early deliveries scored even higher than on time deliveries, and the scores flatten after the early bin no matter how big it is. The score figures were almost the same even when they were checked with distance buckets. This means extending the estimated date doesn't buy extra scores after that point, but lateness hurts a lot.
 
@@ -80,7 +80,7 @@ I also calculated a simple baseline that just finds the 90th percentile delivery
 Here we have a comparison table for each method. On test dataset Olist predicted ~21 days on average at 4.5% late rate, while our model had ~18 days at 3.44% - noticeably lower on both measures. Baseline method halved the late rate but also increased the delivery estimates beyond Olist's estimates.
 
 
-![promise_reliability](01-delivery-estimates/figures/promise_vs_reliability.png)
+![promise_reliability](01-delivery-estimates/figures/08_promise_vs_late_rate.png)
 
 > Different alpha levels trade off one gain against another. On p70 we gain the shortest delivery estimates among others (11 days on average) but we increase late rate a lot, over 10%. The reverse happens at p95.
 
@@ -111,8 +111,7 @@ I recommend using the model with p90 settings as it improves both measures at th
 │   ├── models/
 │   │   ├── delivery_p90.txt        # trained LightGBM quantile model
 │   │   └── delivery_p90_meta.json  # essential configs for the model
-│   ├── analysis.ipynb          # the deliverable: findings, model, recommendation
-│   └── lab.ipynb               # exploratory work, dead ends included
+│   └── analysis.ipynb          # the deliverable: findings, model, recommendation
 ├── .gitignore
 ├── README.md
 └── requirements.txt
