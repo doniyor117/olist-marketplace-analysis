@@ -82,7 +82,7 @@ Here we have a comparison table for each method. On test dataset Olist predicted
 
 ![promise_reliability](01-delivery-estimates/figures/08_promise_vs_late_rate.png)
 
-> Different alpha levels trade off one gain against another. On p70 we gain the shortest delivery estimates among others (11 days on average) but we increase late rate a lot, over 10%. The reverse happens at p95.
+> Different alpha levels trade off one gain against another. On p70 we gain the shortest delivery estimates among others (13 days on average) but we increase late rate a lot, over 10%. The reverse happens at p95.
 
 ## Main Findings
 

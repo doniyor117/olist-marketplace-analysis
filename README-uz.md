@@ -77,7 +77,7 @@ Bu yerda har bir usul uchun taqqoslash jadvali keltirilgan. Test ma'lumotlarida 
 
 ![promise_reliability](01-delivery-estimates/figures/08_promise_vs_late_rate.png)
 
-> Turli alpha darajalari bir yutuqni boshqasiga almashtiradi. p70 da biz boshqalar orasida eng qisqa yetkazib berish muddatlarini olamiz (o'rtacha 11 kun), lekin kechikish darajasini juda ko'p oshiramiz, 10% dan ortiq. p95 da esa buning teskarisi sodir bo'ladi.
+> Turli alpha darajalari bir yutuqni boshqasiga almashtiradi. p70 da biz boshqalar orasida eng qisqa yetkazib berish muddatlarini olamiz (o'rtacha 13 kun), lekin kechikish darajasini juda ko'p oshiramiz, 10% dan ortiq. p95 da esa buning teskarisi sodir bo'ladi.
 
 ## Asosiy topilmalar
 
