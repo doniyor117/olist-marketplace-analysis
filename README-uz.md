@@ -11,6 +11,7 @@ Olist — bu marketplace agregatori sifatida ishlaydigan Braziliya elektron tijo
   - [Tahlil sharhi](#tahlil-sharhi)
   - [Asosiy topilmalar](#asosiy-topilmalar)
   - [Tavsiya](#tavsiya)
+- [02 - Sotuvchilar sifati](#02---sotuvchilar-sifati)
 - [Loyiha tafsilotlari](#loyiha-tafsilotlari)
 - [Repozitoriy tuzilmasi](#repozitoriy-tuzilmasi)
 - [Yo'l xaritasi](#yol-xaritasi)
@@ -92,6 +93,18 @@ Men modelni p90 sozlamalari bilan ishlatishni tavsiya qilaman, chunki u ikkala k
 
 ---
 
+## **02 - Sotuvchilar sifati**
+
+> jarayonda
+
+Olist barcha sotuvchilar uchun bitta umumiy vitrina ishlatadi, shuning uchun bir nechta zaif sotuvchi butun marketplace xaridorlar ko'zida qanday ko'rinishini pasaytiradi. Bu loyiha sotuvchilarni sharh bahosi, `shipping_limit_date` ni o'tkazib yuborgan jo'natmalar va bekor qilishlar bo'yicha baholaydi, so'ng Olist har bir guruh bilan nima qilishi kerakligiga ajratadi: o'rgatish, ogohlantirish yoki chiqarib yuborish.
+
+Tahlil SQL da yozilgan va DuckDB da ishlaydi. Python faqat yakuniy grafiklarni chizish uchun ishlatiladi.
+
+> * **Vositalar:** SQL, DuckDB, JupySQL, pandas, matplotlib
+
+---
+
 ## Loyiha tafsilotlari
 
 > * **Ma'lumotlar:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
@@ -101,11 +114,15 @@ Men modelni p90 sozlamalari bilan ishlatishni tavsiya qilaman, chunki u ikkala k
 
 ```text
 ├── 01-delivery-estimates/
-│   ├── figures/                # tahlildan eksport qilingan grafiklar
+│   ├── figures/                    # tahlildan eksport qilingan grafiklar
 │   ├── models/
 │   │   ├── delivery_p90.txt        # o'rgatilgan LightGBM kvantil modeli
 │   │   └── delivery_p90_meta.json  # model uchun zarur konfiguratsiyalar
-│   └── analysis.ipynb          # yakuniy ish: topilmalar, model, tavsiya
+│   └── analysis.ipynb              # tahlil: topilmalar, model, tavsiya
+├── 02-seller-quality/
+│   ├── figures/                # SQL tahlildan chizilgan grafiklar
+│   ├── sql/                    # notebookdan ajratib olingan so'rovlar
+│   └── analysis-sql.ipynb      # SQL tahlili: sotuvchilar reytingi va choralar
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -119,6 +136,6 @@ Men modelni p90 sozlamalari bilan ishlatishni tavsiya qilaman, chunki u ikkala k
 
 - Yetkazib berish muddatini optimallashtirish - 2026 yil avgust
 
-> keyingisi:
+> jarayonda:
 
 - Sotuvchilar sifati

@@ -11,6 +11,7 @@ Olist is a Brazilian e-commerce platform that operates as a marketplace aggregat
   - [Analysis Overview](#analysis-overview)
   - [Main Findings](#main-findings)
   - [Recommendation](#recommendation)
+- [02 - Seller Quality](#02---seller-quality)
 - [Project Details](#project-details)
 - [Repo Structure](#repo-structure)
 - [Roadmap](#roadmap)
@@ -97,6 +98,18 @@ I recommend using the model with p90 settings as it improves both measures at th
 
 ---
 
+## **02 - Seller Quality**
+
+> in progress
+
+Olist runs one shared storefront for every seller, so a few weak sellers pull down how the whole marketplace looks to buyers. This project scores sellers on review rating, shipments that miss `shipping_limit_date`, and cancellations, then sorts them into what Olist should do about each group: coach, warn, or drop.
+
+The analysis is written in SQL and run on DuckDB. Python is only used to draw the final charts.
+
+> * **Tools:** SQL, DuckDB, JupySQL, pandas, matplotlib
+
+---
+
 ## Project Details
 
 > * **Data:** [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
@@ -107,11 +120,15 @@ I recommend using the model with p90 settings as it improves both measures at th
 
 ```text
 ├── 01-delivery-estimates/
-│   ├── figures/                # charts exported from the analysis
+│   ├── figures/                    # charts exported from the analysis
 │   ├── models/
 │   │   ├── delivery_p90.txt        # trained LightGBM quantile model
 │   │   └── delivery_p90_meta.json  # essential configs for the model
-│   └── analysis.ipynb          # the deliverable: findings, model, recommendation
+│   └── analysis.ipynb              # analysis: findings, model, recommendation
+├── 02-seller-quality/
+│   ├── figures/                # charts exported from the SQL analysis
+│   ├── sql/                    # queries pulled out of the notebook
+│   └── analysis-sql.ipynb      # SQL analysis: seller scorecard and action tiers
 ├── .gitignore
 ├── README.md
 └── requirements.txt
@@ -124,6 +141,6 @@ I recommend using the model with p90 settings as it improves both measures at th
 
 - Delivery estimates optimization - Aug 2026
 
-> next:
+> in progress:
 
 - Seller quality
