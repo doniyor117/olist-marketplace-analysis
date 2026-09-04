@@ -11,3 +11,4 @@ kagglehub>=0.3
 duckdb>=1.0
 jupysql>=0.10
 duckdb-engine>=0.13
+pathlib>=1.0
