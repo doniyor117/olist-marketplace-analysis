@@ -8,9 +8,13 @@ Olist is a Brazilian e-commerce platform that operates as a marketplace aggregat
 
 - [Scope](#scope)
 - [01 - Delivery Promise Optimization](#01---delivery-promise-optimization)
-  - [Analysis Overview](#analysis-overview)
-  - [Main Findings](#main-findings)
-  - [Recommendation](#recommendation)
+  * [Analysis Overview](#analysis-overview)
+  * [Main Findings](#main-findings)
+  * [Recommendation](#recommendation)
+- [02 - Seller Quality](#02---seller-quality)
+  * [Cleaning and Scoring](#cleaning-and-scoring)
+  * [Main Findings](#main-findings-1)
+  * [Recommendation](#recommendation-1)
 - [02 - Seller Quality](#02---seller-quality)
 - [Project Details](#project-details)
 - [Repo Structure](#repo-structure)
@@ -100,13 +104,74 @@ I recommend using the model with p90 settings as it improves both measures at th
 
 ## **02 - Seller Quality**
 
-> in progress
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/doniyor117/olist-marketplace-analysis/blob/main/02-seller-quality/analysis-sql.ipynb)
+[![Notebook](https://img.shields.io/badge/notebook-view%20on%20GitHub-181717?logo=jupyter)](02-seller-quality/analysis-sql.ipynb)
 
-Olist runs one shared storefront for every seller, so a few weak sellers pull down how the whole marketplace looks to buyers. This project scores sellers on review rating, shipments that miss `shipping_limit_date`, and cancellations, then sorts them into what Olist should do about each group: coach, warn, or drop.
+Olist doesn't choose what gets sold on its marketplace, but it chooses who sells. Buyers see one Olist storefront, not separate shops, so a seller who ships late or gets bad reviews drags down how the whole store looks.
 
-The analysis is written in SQL and run on DuckDB. Python is only used to draw the final charts.
+This project builds a scorecard for each seller from review scores, shipping times, and cancellations, then groups sellers by what Olist should do about them. The analysis is written in SQL and run on DuckDB; Python is only used to draw the final charts.
 
-> * **Tools:** SQL, DuckDB, JupySQL, pandas, matplotlib
+This analysis asks:
+
+- **How does seller performance affect Olist, and in what measure?**
+- **What share of low review scores do the worst sellers account for?**
+- **What should Olist do with each seller: training, incentives, or removal?**
+
+## Cleaning and Scoring
+
+Before scoring anyone, three things needed checking: which order statuses to keep, whether reviews can be tied to a single seller, and whether the shipping and review columns are actually filled in.
+
+97% of the 99,441 orders are `delivered` and 0.63% are `canceled`. 1.3% of orders contain items from more than one seller, so a review on one of those orders can't be blamed on a single seller, and review metrics are built from single-seller orders only. Shipping and cancellation metrics are per item and per order, so they aren't affected. `order_delivered_carrier_date` is missing on 0.002% of delivered orders and `shipping_limit_date` is never missing, so the late-shipment metric is safe, and 99.2% of orders have a review attached.
+
+One bad order out of two looks like a 50% failure rate, so a minimum order count keeps tiny sellers from dominating the tails:
+
+| Cutoff (orders) | Sellers kept | % sellers kept | % orders kept |
+| :--- | :---: | :---: | :---: |
+| 1 | 3,095 | 100.0 | 100.0 |
+| 5 | 1,794 | 58.0 | 97.4 |
+| **10** | **1,271** | **41.1** | **93.9** |
+| 20 | 818 | 26.4 | 87.7 |
+| 30 | 634 | 20.5 | 83.3 |
+
+A cutoff of **10 orders** keeps 41% of sellers but 94% of orders. That drops 1,824 very small sellers who together are only 6% of order volume. The rest of the analysis scores sellers with at least 10 orders; the small sellers are looked at separately as an onboarding question.
+
+## Main Findings
+
+![late_shipment_vs_reviews](https://github.com/doniyor117/olist-marketplace-analysis/raw/main/02-seller-quality/figures/01_late_shipment_vs_reviews.png)
+> Scored sellers split into five groups by how often they miss `shipping_limit_date`. The on-time quintile never misses a deadline and averages a 4.30 review score with 7.8% 1-star. The worst quintile misses on a third of orders (32% average) and drops to 3.86 with 16.7% 1-star. Cancellations point the same way but are rare: only 202 scored sellers ever cancel an order, and they average 3.96 against 4.18 for sellers that never cancel.
+
+- **Late shipping is the seller behaviour that tracks review scores most cleanly.** It's also already in the data as `shipping_limit_date`, so it's directly actionable.
+
+Each scored seller was put in one of three tiers from its own numbers: **keep** (average score at least 4.0 and late-shipment rate under 15%), **remove** (average score under 3.0, or late-shipment rate 40%+, or cancellation rate 10%+), and **watch** (everything in between).
+
+| Tier | Sellers | % of sellers | Orders | % of orders | Avg. score | % of all 1-star reviews | Tier 1-star rate |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| keep | 784 | 61.7 | 61,140 | 65.1 | 4.35 | 46.2 | 8.1 |
+| watch | 416 | 32.7 | 30,571 | 32.6 | 3.89 | 40.5 | 14.3 |
+| remove | 71 | 5.6 | 2,209 | 2.4 | 3.40 | 5.7 | 28.0 |
+
+![where_the_bad_reviews_are](https://github.com/doniyor117/olist-marketplace-analysis/raw/main/02-seller-quality/figures/02_where_the_bad_reviews_are.png)
+> The **remove** tier is 5.6% of scored sellers and 2.4% of orders, and it produces 5.7% of all 1-star reviews. The **watch** tier adds another 40.5%. The **keep** tier, on its own, still produces 46.2% of the marketplace's 1-star reviews, because it carries most of the volume and even good sellers get a 1-star about 8% of the time.
+
+- **The worst sellers are a small share of the problem.** If every watch and remove seller were held to the keep tier's 1-star rate, the single-seller 1-star rate would fall from 10.6% to 8.1%. Real, but not a rescue. Low review scores are spread across the whole seller base, not concentrated in a bad corner of it.
+
+![new_sellers_score_lower](https://github.com/doniyor117/olist-marketplace-analysis/raw/main/02-seller-quality/figures/03_new_sellers_score_lower.png)
+> Sellers with fewer than 10 orders average a 3.96 review score, below the 4.15 that sellers settle at once they pass that volume.
+
+- **New sellers underperform the settled base**, which points to onboarding, not just enforcement, as part of the fix.
+
+## **Recommendation:**
+
+1. **Enforce the shipping deadline.** Late shipping is the seller behaviour that tracks review scores most cleanly, and `shipping_limit_date` is already in the data. Flag sellers whose late rate crosses 15% and escalate at 40%.
+2. **Coach the watch tier, don't cut it.** It's a third of orders and a third of 1-star reviews. Moving it toward the keep tier's shipping and rating is where the marketplace-level gain is.
+3. **Remove the 71-seller tail only after a warning.** It's 2.4% of orders, so removal is low risk, but it's also a small share of the problem, so it isn't urgent. Most of these sellers are in SP (41 of 71).
+4. **Tighten onboarding.** New and very small sellers score below the settled base. A probation period with a shipping SLA would catch the weak ones before they collect 1-star reviews.
+
+On incentives: the dataset has no fee, cost, or margin data, so whether a bonus for on-time shipping would beat plain enforcement can't be tested here.
+
+The three starting questions, answered: seller performance reaches Olist through review scores, driven mostly by late shipping; the worst sellers are a small share of the low scores; and the response is enforcement and coaching, with removal reserved for a short list.
+
+> - **Tools:** SQL, DuckDB, JupySQL, pandas, matplotlib
 
 ---
 
@@ -140,7 +205,4 @@ The analysis is written in SQL and run on DuckDB. Python is only used to draw th
 > finished:
 
 - Delivery estimates optimization - Aug 2026
-
-> in progress:
-
-- Seller quality
+- Seller quality - Sep 2026
